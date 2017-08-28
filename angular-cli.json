@@ -17,8 +17,10 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "styles.sass",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+        "../node_modules/angular-bootstrap-md/scss/mdb.scss",
+        "./styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -28,33 +30,12 @@
       }
     }
   ],
-  "e2e": {
-    "protractor": {
-      "config": "./protractor.conf.js"
-    }
-  },
-  "lint": [
-    {
-      "files": "src/**/*.ts",
-      "project": "src/tsconfig.json"
-    },
-    {
-      "files": "e2e/**/*.ts",
-      "project": "e2e/tsconfig.json"
-    }
-  ],
-  "test": {
-    "karma": {
-      "config": "./karma.conf.js"
-    }
-  },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "scss",
     "class": {
       "spec": false
     },
     "component": {
-      "spec": true,
       "inlineStyle": false,
       "inlineTemplate": false
     }

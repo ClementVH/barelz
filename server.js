@@ -15,6 +15,8 @@ const server = new Hapi.Server({
 server.connection({ port: process.env.PORT || 3000 });
 
 global.iron = require('iron');
+global.MongoClient = require('mongodb').MongoClient
+global.url = "mongodb://toto:toto@ds011462.mlab.com:11462/clementvh";
 
 server.state('access_token', {
     ttl: 1000*60*60*24*365,
@@ -39,6 +41,10 @@ server.route({
         }
     }
 });
+
+const Auth = new (require('./app/auth/Auth.js'))();
+server.route(Auth.login);
+server.route(Auth.register);
 
 server.start((err) => {
 

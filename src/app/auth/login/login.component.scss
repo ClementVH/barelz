@@ -1,0 +1,14 @@
+section {
+    width: 28rem;
+    transform: translateY(calc(50vh - 50%));
+}
+
+.form-header {
+    color: #fff;
+    text-align: center;
+    margin-top: -50px;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 2px;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
