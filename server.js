@@ -46,6 +46,9 @@ const Auth = new (require('./app/auth/Auth.js'))();
 server.route(Auth.login);
 server.route(Auth.register);
 
+const Home = new (require('./app/home/Home.js'))();
+server.route(Home.myBarelz);
+
 server.start((err) => {
 
     if (err) {

@@ -8,11 +8,15 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { AuthModule } from "app/auth/auth.module";
 import { HomeComponent } from './home/home.component';
+import { LibraryComponent } from './library/library.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LibraryComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
