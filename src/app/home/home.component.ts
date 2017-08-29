@@ -9,16 +9,22 @@ import { Http, URLSearchParams } from "@angular/http";
 export class HomeComponent  {
     @ViewChildren('barel', {read: ViewContainerRef}) barelContainers: QueryList<ViewContainerRef>;
 
-    test = [1,2];
+    barelz: string[] = [];
 
     constructor(private compiler: Compiler, private http: Http) {}
 
     ngAfterViewInit() {
-        let params = new URLSearchParams();
-        params.set('barelz', JSON.stringify(['barel']));
-        this.http.get("/myBarelz", {search: params, withCredentials: true}).subscribe(
+
+        this.http.get("/userInfos", {withCredentials: true}).subscribe(
             (res: any) => {
-                this.addBarelz(res.json());
+                this.barelz = res.json();
+                let params = new URLSearchParams();
+                params.set('barelz', JSON.stringify(this.barelz));
+                this.http.get("/myBarelz", {search: params, withCredentials: true}).subscribe(
+                    (res: any) => {
+                        this.addBarelz(res.json());
+                    }
+                )
             }
         )
     }
