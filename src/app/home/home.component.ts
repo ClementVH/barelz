@@ -14,7 +14,6 @@ export class HomeComponent  {
     constructor(private compiler: Compiler, private http: Http) {}
 
     ngAfterViewInit() {
-
         this.http.get("/userInfos", {withCredentials: true}).subscribe(
             (res: any) => {
                 this.barelz = res.json();
@@ -26,7 +25,7 @@ export class HomeComponent  {
                     }
                 )
             }
-        )
+        );
     }
 
     private addBarelz(barelz: any[]) {

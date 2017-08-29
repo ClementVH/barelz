@@ -1,3 +1,8 @@
-<p>
-  library works!
-</p>
+<div class="card m-3 barel-ctn d-inline-flex" *ngFor="let barel of barelz">
+    <h3 class="card-header primary-color white-text">{{barel.name}}</h3>
+    <div class="card-body">
+        <h4 class="card-title">Special title treatment</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a class="btn btn-primary waves-light ml-0" mdbRippleRadius (click)="addBarel(barel)"><i class="fa fa-plus"></i>Add to your Home</a>
+    </div>
+</div>

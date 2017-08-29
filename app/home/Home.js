@@ -7,7 +7,7 @@ module.exports = class Home {
                 MongoClient.connect(url, function(err, db) {
                     let collection = db.collection('barelz');
                     let barel = collection.find({
-                        name: {"$in" : JSON.parse(req.query.barelz)}
+                        _id: {"$in" : JSON.parse(req.query.barelz).map(id => new Mongo.ObjectID(id))}
                     }).toArray((err, barelz) => {
                         db.close();
                         res(barelz);

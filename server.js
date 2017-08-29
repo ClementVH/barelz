@@ -1,6 +1,7 @@
 const Path = require('path');
 const Hapi = require('hapi');
 const Inert = require('inert');
+const Mongo = require('mongodb');
 
 const server = new Hapi.Server({
     connections: {
@@ -15,7 +16,8 @@ const server = new Hapi.Server({
 server.connection({ port: process.env.PORT || 3000 });
 
 global.iron = require('iron');
-global.MongoClient = require('mongodb').MongoClient
+global.Mongo = Mongo;
+global.MongoClient = Mongo.MongoClient
 global.url = "mongodb://toto:toto@ds011462.mlab.com:11462/clementvh";
 
 server.state('access_token', {
@@ -51,6 +53,10 @@ server.route(Home.myBarelz);
 
 const User = new (require('./app/common/User.js'))();
 server.route(User.userInfos);
+
+const Library = new (require('./app/library/Library.js'))();
+server.route(Library.catalog);
+server.route(Library.addBarel);
 
 server.start((err) => {
 
