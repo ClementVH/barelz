@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef, Compiler, NgModule, Que
 import { Http, URLSearchParams } from "@angular/http";
 import { UserService } from "app/services/user.service";
 import { User } from "app/utils/User";
+import { Barel } from "app/utils/Barel";
 
 @Component({
     selector: 'app-home',
@@ -11,7 +12,7 @@ import { User } from "app/utils/User";
 export class HomeComponent  {
     @ViewChildren('barel', {read: ViewContainerRef}) barelContainers: QueryList<ViewContainerRef>;
 
-    barelz: string[] = [];
+    barelz: Barel[] = [];
 
     constructor(private compiler: Compiler, private http: Http, private userService: UserService) {}
 
@@ -26,7 +27,7 @@ export class HomeComponent  {
         );
     }
 
-    private addBarelz(barelz: any[]) {
+    private addBarelz(barelz: Barel[]) {
 
         let components = [];
 
