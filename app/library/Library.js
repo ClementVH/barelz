@@ -5,14 +5,23 @@ module.exports = class Library {
             path: '/catalog',
             handler: (req, res) => {
                 MongoClient.connect(url, function(err, db) {
-                    let collection = db.collection('barelz');
-                    let barel = collection.find({})
-                        .sort({upvotes : -1})
-                        .limit(25)
-                        .toArray((err, barelz) => {
-                            db.close();
-                            res(barelz);
-                        });
+                    let UserCollection = db.collection('users');
+                    let BarelCollection = db.collection('barelz');
+                    UserCollection.findOne({
+                        username: req.state.access_token.username
+                    }, {barelz: true}, (err, user) => {
+                        BarelCollection.find({
+                            _id: {
+                                '$nin': user.barelz.map(id => new Mongo.ObjectID(id))
+                            }
+                        })
+                            .sort({upvotes : -1})
+                            .limit(25)
+                            .toArray((err, barelz) => {
+                                db.close();
+                                res(barelz);
+                            });
+                    })
                 });
             },
             config: {
