@@ -5,12 +5,20 @@ module.exports = class User {
             path: '/userInfos',
             handler: (req, res) => {
                 MongoClient.connect(url, function(err, db) {
-                    let collection = db.collection('users');
-                    let barel = collection.findOne({
+                    let UserCollection = db.collection('users');
+                    let user = {};
+                    UserCollection.findOne({
                         username: req.state.access_token.username
-                    }, {'barelz' : true}, (err, user) => {
-                        db.close();
-                        res(user.barelz);
+                    }, {'username': true, 'barelz' : true}, (err, user) => {
+                        user.username = user.username;
+                        let BarelCollection = db.collection('barelz');
+                        BarelCollection.find({
+                            _id: {"$in" : user.barelz.map(id => new Mongo.ObjectID(id))}
+                        }).toArray((err, barelz) => {
+                            db.close();
+                            user.barelz = barelz;
+                            res(user);
+                        });
                     });
                 });
             },

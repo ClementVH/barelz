@@ -10,6 +10,7 @@ import { AuthModule } from "app/auth/auth.module";
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserService } from "app/services/user.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { ProfileComponent } from './profile/profile.component';
     MDBBootstrapModule.forRoot(),
     AuthModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
