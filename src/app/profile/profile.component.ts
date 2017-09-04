@@ -15,15 +15,19 @@ export class ProfileComponent implements OnInit {
 
     barelz: Barel[];
 
+    updateBarelz = (user: User) => this.barelz = user.barelz;
+
     ngOnInit() {
         if (!this.userService.user)
-            this.userService.fetchUser().subscribe(
-                (user: User) => {
-                    this.barelz = user.barelz;
-                }
-            );
+            this.userService.fetchUser(this.updateBarelz)
 
         else
-            this.barelz = this.userService.user.barelz
+            this.updateBarelz(this.userService.user);
+    }
+
+    removeBarel(_id: string): void {
+        this.userService.removeBarel(_id).subscribe(
+            res => this.userService.fetchUser(this.updateBarelz)
+        );
     }
 }

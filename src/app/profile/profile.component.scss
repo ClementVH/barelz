@@ -1,3 +1,12 @@
 .side-col {
     max-width: 250px;
 }
+
+.dropdown .dropdown-menu {
+    top: -30px;
+}
+
+.dropdown {
+    width: 25px;
+    cursor: pointer;
+}

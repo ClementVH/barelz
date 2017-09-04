@@ -28,6 +28,32 @@ module.exports = class User {
                     failAction: 'error'
                 }
             }
+        };
+
+        this.removeBarel = {
+            method: 'GET',
+            path: '/removeBarel',
+            handler: (req, res) => {
+                MongoClient.connect(url, function(err, db) {
+                    let collection = db.collection('users');
+                    let barel = collection.updateOne({
+                        username: req.state.access_token.username
+                    }, {
+                        $pull: {
+                            barelz: req.query._id
+                        }
+                    }, (err, result) => {
+                        db.close();
+                        res().code(200)
+                    });
+                });
+            },
+            config: {
+                state: {
+                    parse: true,
+                    failAction: 'error'
+                }
+            }
         }
     }
 }

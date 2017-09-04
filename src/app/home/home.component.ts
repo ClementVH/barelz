@@ -16,15 +16,18 @@ export class HomeComponent  {
 
     constructor(private compiler: Compiler, private http: Http, private userService: UserService) {}
 
+    updateBarelz: (user: User) => void;
+
     ngAfterViewInit() {
-        this.userService.fetchUser().subscribe(
-            (user: User) => {
-                this.barelz = user.barelz;
-                this.barelContainers.changes.subscribe(
-                    changes => this.addBarelz(user.barelz)
-                );
-            }
-        );
+
+        this.updateBarelz = (user: User) => {
+            this.barelz = user.barelz;
+            this.barelContainers.changes.subscribe(
+                changes => this.addBarelz(user.barelz)
+            );
+        };
+
+        this.userService.fetchUser(this.updateBarelz)
     }
 
     private addBarelz(barelz: Barel[]) {
