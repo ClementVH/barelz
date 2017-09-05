@@ -54,6 +54,33 @@ module.exports = class User {
                     failAction: 'error'
                 }
             }
-        }
+        };
+
+        this.contributions = {
+            method: 'GET',
+            path: '/contributions',
+            handler: (req, res) => {
+                MongoClient.connect(url, function(err, db) {
+                    let UserCollection = db.collection('users');
+                    UserCollection.findOne({
+                        username: req.state.access_token.username
+                    }, {'contributions': true}, (err, user) => {
+                        let BarelCollection = db.collection('barelz');
+                        BarelCollection.find({
+                            _id: {"$in" : user.contributions.map(id => new Mongo.ObjectID(id))}
+                        }).toArray((err, barelz) => {
+                            db.close();
+                            res(barelz);
+                        });
+                    });
+                });
+            },
+            config: {
+                state: {
+                    parse: true,
+                    failAction: 'error'
+                }
+            }
+        };
     }
 }

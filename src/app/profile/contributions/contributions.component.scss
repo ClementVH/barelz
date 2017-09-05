@@ -1,0 +1,12 @@
+.dropdown .dropdown-menu {
+    top: -30px;
+}
+
+.dropdown {
+    width: 25px;
+    cursor: pointer;
+}
+
+.dropdown.show .dropdown-menu {
+    transition: 0s;
+}

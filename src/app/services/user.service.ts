@@ -23,6 +23,10 @@ export class UserService {
         ).subscribe(cb);
     }
 
+    hasField(field: string): boolean {
+        return this.user && this.user[field];
+    }
+
     removeBarel(_id: string, cb?: any): Observable<any>{
         let params = new URLSearchParams();
         params.set('_id', _id)
