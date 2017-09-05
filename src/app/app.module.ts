@@ -9,15 +9,14 @@ import { AppComponent } from './app.component';
 import { AuthModule } from "app/auth/auth.module";
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
-import { ProfileComponent } from './profile/profile.component';
 import { UserService } from "app/services/user.service";
+import { ProfileModule } from "app/profile/profile.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LibraryComponent,
-    ProfileComponent
+    LibraryComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +24,8 @@ import { UserService } from "app/services/user.service";
     HttpModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
-    AuthModule
+    AuthModule,
+    ProfileModule
   ],
   providers: [
     UserService

@@ -10,24 +10,7 @@ import { User } from "app/utils/User";
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+    constructor() {}
 
-    constructor(private http: Http, private userService: UserService) {}
-
-    barelz: Barel[];
-
-    updateBarelz = (user: User) => this.barelz = user.barelz;
-
-    ngOnInit() {
-        if (!this.userService.user)
-            this.userService.fetchUser(this.updateBarelz)
-
-        else
-            this.updateBarelz(this.userService.user);
-    }
-
-    removeBarel(_id: string): void {
-        this.userService.removeBarel(_id).subscribe(
-            res => this.userService.fetchUser(this.updateBarelz)
-        );
-    }
+    ngOnInit() {}
 }

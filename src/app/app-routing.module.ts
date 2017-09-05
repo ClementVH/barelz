@@ -7,6 +7,8 @@ import { RegisterComponent } from "app/auth/register/register.component";
 import { HomeComponent } from "app/home/home.component";
 import { ProfileComponent } from "app/profile/profile.component";
 import { LibraryComponent } from "app/library/library.component";
+import { MyBarelzComponent } from "app/profile/my-barelz/my-barelz.component";
+import { ContributionsComponent } from "app/profile/contributions/contributions.component";
 
 const routes: Routes = [
   {
@@ -28,7 +30,22 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'myBarelz',
+        pathMatch: 'full'
+      },
+      {
+        path: 'myBarelz',
+        component: MyBarelzComponent
+      },
+      {
+        path: 'contributions',
+        component: ContributionsComponent
+      }
+    ]
   },
   {
     path: 'login',
