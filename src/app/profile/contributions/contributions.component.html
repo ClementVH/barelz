@@ -1,19 +1,19 @@
 <div class="list-group">
-    <div *ngFor="let barel of barelz" class="pr-2 list-group-item list-group-item-action flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{barel.name}}</h5>
-
-          <div class="dropdown" dropdown>
-            <div dropdownToggle class="text-center">
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </div>
-
-            <div class="dropdown-menu">
-                <a class="dropdown-item px-2"><i class="fa fa-remove mr-2" aria-hidden="true"></i>Delete</a>
-            </div>
-        </div>
+  <div *ngFor="let barel of barelz; let i = index" class="pr-2 list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{barel.name}} - <i><small>{{barel._id}}</small></i></h5>
+        <div class="dropdown" dropdown>
+          <div dropdownToggle class="text-center">
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+          </div>
+          <div class="dropdown-menu">
+              <a class="dropdown-item px-2"><i class="fa fa-remove mr-2" aria-hidden="true"></i>Delete</a>
+          </div>
       </div>
-      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-      <small>Donec id elit non mi porta.</small>
     </div>
+    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+    <button (click)="showFileInput(i)" type="button" class="btn btn-indigo btn-sm waves-light ml-0" mdbRippleRadius>Open Update</button>
+    <button *ngIf="inputTable[i].show" (click)="updateBarel(barel._id, i)" type="button" class="btn btn-purple btn-sm waves-light" mdbRippleRadius>Update</button>
+    <ng2-file-input *ngIf="inputTable[i].show" (onAction)="fillTable($event, i)"></ng2-file-input>
   </div>
+</div>

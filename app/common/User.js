@@ -82,5 +82,31 @@ module.exports = class User {
                 }
             }
         };
+
+        this.updateBarel = {
+            method: 'POST',
+            path: '/updateBarel',
+            handler: (req, res) => {
+                MongoClient.connect(url, function(err, db) {
+                    let BarelCollection = db.collection('barelz');
+                    let _id = req.payload.id;
+                    delete req.payload.id;
+                    BarelCollection.updateOne(
+                    { _id: new Mongo.ObjectID(_id) },
+                    {
+                        '$set': req.payload
+                    }, (err, barelz) => {
+                        db.close();
+                        res(barelz);
+                    });
+                });
+            },
+            config: {
+                state: {
+                    parse: true,
+                    failAction: 'error'
+                }
+            }
+        };
     }
 }

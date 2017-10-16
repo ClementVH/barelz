@@ -55,6 +55,7 @@ const User = new (require('./app/common/User.js'))();
 server.route(User.userInfos);
 server.route(User.removeBarel);
 server.route(User.contributions);
+server.route(User.updateBarel);
 
 const Library = new (require('./app/library/Library.js'))();
 server.route(Library.catalog);
